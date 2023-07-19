@@ -16,6 +16,8 @@ approvaltests = "^8.4.1"
 pytest-approvaltests = "^0.2.4"
 texttest = "^4.3.0"
 pytest-cov = "^4.1.0"
+black = "^23.7.0"
+ruff = "^0.0.278"
 
 [build-system]
 requires = ["poetry-core"]
