@@ -124,5 +124,5 @@ def test_shopping_cart_add_item(catalog, toothbrush):
     receipt_item = receipt.items[0]
     assert receipt_item.product == toothbrush
     assert receipt_item.price == 99
-    assert receipt_item.total_price == 99 
+    assert receipt_item.total_price == 99
     assert receipt_item.quantity == 1
