@@ -42,9 +42,7 @@ def test_3_for_2_discount(catalog, toothbrush):
 
 def test_5_for_amount_discount(catalog, toothbrush):
     teller = Teller(catalog)
-    teller.add_special_offer(
-        SpecialOfferType.FIVE_FOR_AMOUNT, toothbrush, 400
-    )
+    teller.add_special_offer(SpecialOfferType.FIVE_FOR_AMOUNT, toothbrush, 400)
     cart = ShoppingCart()
     cart.add_item_quantity(toothbrush, 6)
     receipt = teller.checks_out_articles_from(cart)
@@ -56,3 +54,37 @@ def test_5_for_amount_discount(catalog, toothbrush):
     assert receipt_item.price == 99
     assert receipt_item.total_price == 594
     assert receipt_item.quantity == 6
+
+
+def test_2_for_amount_discount(catalog, toothbrush):
+    teller = Teller(catalog)
+    teller.add_special_offer(SpecialOfferType.TWO_FOR_AMOUNT, toothbrush, 150)
+    cart = ShoppingCart()
+    cart.add_item_quantity(toothbrush, 2)
+    receipt = teller.checks_out_articles_from(cart)
+    assert receipt.total_price() == 150
+    assert receipt.discounts == [Discount(toothbrush, "2 for 150", -48)]
+    assert len(receipt.items) == 1
+    receipt_item = receipt.items[0]
+    assert receipt_item.product == toothbrush
+    assert receipt_item.price == 99
+    assert receipt_item.total_price == 198
+    assert receipt_item.quantity == 2
+
+
+def test_2_for_amount_discount_2_times(catalog, toothbrush):
+    teller = Teller(catalog)
+    teller.add_special_offer(SpecialOfferType.TWO_FOR_AMOUNT, toothbrush, 150)
+    cart = ShoppingCart()
+    cart.add_item_quantity(toothbrush, 4)
+    receipt = teller.checks_out_articles_from(cart)
+    assert receipt.total_price() == 300
+    assert receipt.discounts == [
+        Discount(toothbrush, "2 for 150", -96),
+    ]
+    assert len(receipt.items) == 1
+    receipt_item = receipt.items[0]
+    assert receipt_item.product == toothbrush
+    assert receipt_item.price == 99
+    assert receipt_item.total_price == 396
+    assert receipt_item.quantity == 4
