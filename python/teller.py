@@ -1,18 +1,25 @@
+from dataclasses import dataclass, field
+from typing import TypeAlias
+
+from catalog import SupermarketCatalog
 from model_objects import Offer, Product, SpecialOfferType
 from receipt import Receipt
+from shopping_cart import ShoppingCart
+
+Offers: TypeAlias = dict[Product, Offer]
 
 
+@dataclass
 class Teller:
-    def __init__(self, catalog):
-        self.catalog = catalog
-        self.offers = {}
+    catalog: SupermarketCatalog
+    offers: Offers = field(default_factory=dict)
 
     def add_special_offer(
         self, offer_type: SpecialOfferType, product: Product, argument: float
-    ):
+    ) -> None:
         self.offers[product] = Offer(offer_type, product, argument)
 
-    def checks_out_articles_from(self, the_cart):
+    def checks_out_articles_from(self, the_cart: ShoppingCart) -> Receipt:
         receipt = Receipt()
         product_quantities = the_cart.items
         for pq in product_quantities:
