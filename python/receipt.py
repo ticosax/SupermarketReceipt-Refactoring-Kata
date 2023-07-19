@@ -1,9 +1,14 @@
+from dataclasses import dataclass
+
+from model_objects import Product
+
+
+@dataclass
 class ReceiptItem:
-    def __init__(self, product, quantity, price, total_price):
-        self.product = product
-        self.quantity = quantity
-        self.price = price
-        self.total_price = total_price
+    product: Product
+    quantity: float
+    price: float
+    total_price: float
 
 
 class Receipt:

@@ -1,4 +1,5 @@
 from approvaltests import verify
+
 from receipt_printer import ReceiptPrinter
 
 

@@ -1,6 +1,7 @@
 import pytest
+
+from model_objects import Discount, Product, ProductUnit
 from receipt import Receipt
-from model_objects import Product, ProductUnit, Discount
 from tests.fake_catalog import FakeCatalog
 
 
