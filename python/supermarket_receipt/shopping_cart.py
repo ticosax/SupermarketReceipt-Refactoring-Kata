@@ -1,8 +1,14 @@
 import math
 from dataclasses import dataclass, field
 
-from model_objects import Discount, Offer, Product, ProductQuantity, SpecialOfferType
-from receipt import Receipt
+from supermarket_receipt.model_objects import (
+    Discount,
+    Offer,
+    Product,
+    ProductQuantity,
+    SpecialOfferType,
+)
+from supermarket_receipt.receipt import Receipt
 
 
 def _n_for_amount(

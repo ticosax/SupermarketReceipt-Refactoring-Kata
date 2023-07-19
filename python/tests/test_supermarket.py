@@ -1,7 +1,6 @@
-from model_objects import Discount, SpecialOfferType
-from shopping_cart import ShoppingCart
-from teller import Teller
-from tests.conftest import toothbrush
+from supermarket_receipt.model_objects import Discount, SpecialOfferType
+from supermarket_receipt.shopping_cart import ShoppingCart
+from supermarket_receipt.teller import Teller
 
 
 def test_ten_percent_discount(catalog, apples):
@@ -91,7 +90,7 @@ def test_2_for_amount_discount_2_times(catalog, toothbrush):
     assert receipt_item.quantity == 4
 
 
-def test_shopping_cart_no_matching_discount(catalog, apples):
+def test_shopping_cart_no_matching_discount(catalog, apples, toothbrush):
     teller = Teller(catalog)
     teller.add_special_offer(SpecialOfferType.TEN_PERCENT_DISCOUNT, toothbrush, 10.0)
 

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from model_objects import Product
+from supermarket_receipt.model_objects import Product
 
 NOT_IMPLEMENTED_MESSAGE = "cannot be called from a unit test - it accesses the database"
 

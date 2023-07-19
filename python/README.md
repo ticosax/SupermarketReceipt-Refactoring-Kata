@@ -62,7 +62,7 @@ and delegate the conversion to Currency units to the presentation layer.
 - The class Teller receives a catalog instance as init arg. This looks like a code smell. If keeping references to a external objects is not necessary, it should be avoided as it can defeat garbage collection it the Telle outlive the Catalog.
 
 ### model_objects.py 
-- convert to dataclasses or pydantic models (pydantic if serialization would be proved to be useful later.)
+- convert to dataclasses or pydantic models (pydantic if serialization would be proven to be useful later.)
 
 ### receipt.py 
 - ReceiptItem -> convert to dataclass
@@ -77,7 +77,7 @@ and delegate the conversion to Currency units to the presentation layer.
 - Lot of tiny refactoring looks necessary
 - iteration over dict.keys() instead of dict.items()
 - a big if/elif/else block would be probably better as rewritten with a match/case expression.
--  Discount.description could be refactored, to leave the presentation concerns out of it.
+- ~~Discount.description could be refactored, to leave the presentation concerns out of it.~~ Turns out it's good enough as it is.
 
 ### test_supermarket.py 
 

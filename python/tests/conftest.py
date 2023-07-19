@@ -1,7 +1,7 @@
 import pytest
 
-from model_objects import Discount, Product, ProductUnit
-from receipt import Receipt
+from supermarket_receipt.model_objects import Discount, Product, ProductUnit
+from supermarket_receipt.receipt import Receipt
 from tests.fake_catalog import FakeCatalog
 
 
@@ -29,6 +29,20 @@ def toothbrush(catalog) -> Product:
     toothbrush = Product("toothbrush", ProductUnit.EACH)
     catalog.add_product(toothbrush, 99)
     return toothbrush
+
+
+@pytest.fixture()
+def cloves_the_spice(catalog) -> Product:
+    cloves = Product("cloves", ProductUnit.KILO)
+    catalog.add_product(cloves, 1000)
+    return cloves
+
+
+@pytest.fixture()
+def cloves_the_hardware(catalog) -> Product:
+    cloves = Product("cloves", ProductUnit.EACH)
+    catalog.add_product(cloves, 10)
+    return cloves
 
 
 @pytest.fixture()

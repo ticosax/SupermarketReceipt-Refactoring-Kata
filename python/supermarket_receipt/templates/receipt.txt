@@ -1,0 +1,12 @@
+{% for item in receipt.items -%}
+{{ item | asitemline }}
+  {{ "{:.2f}".format(item.price / 100) }} * {% if item.product.unit | is_each -%}
+  {{ "{:d}".format(item.quantity) }}
+  {%- else -%}
+  {{ "{:.3f}".format(item.quantity) }}
+  {%- endif %}
+{% endfor -%}
+{% for discount in receipt.discounts -%}
+{{ discount | asdiscountline }}
+{% endfor %}
+{{ receipt | astotalline }}

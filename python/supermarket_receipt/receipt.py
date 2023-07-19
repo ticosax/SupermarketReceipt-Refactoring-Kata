@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from math import fsum
 
-from model_objects import Discount, Product
+from supermarket_receipt.model_objects import Discount, Product
 
 
 @dataclass

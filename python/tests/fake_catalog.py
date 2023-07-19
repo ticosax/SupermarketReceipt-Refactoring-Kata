@@ -1,5 +1,5 @@
-from catalog import SupermarketCatalog
-from model_objects import Product
+from supermarket_receipt.catalog import SupermarketCatalog
+from supermarket_receipt.model_objects import Product
 
 
 class FakeCatalog(SupermarketCatalog):

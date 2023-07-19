@@ -1,6 +1,6 @@
 from approvaltests import verify
 
-from receipt_printer import ReceiptPrinter
+from supermarket_receipt.receipt_printer import ReceiptPrinter
 
 
 def test_receipt_printer_wo_discount(no_discount_receipt):

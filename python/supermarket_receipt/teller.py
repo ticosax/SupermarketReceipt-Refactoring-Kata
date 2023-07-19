@@ -1,10 +1,10 @@
 from dataclasses import dataclass, field
 from typing import TypeAlias
 
-from catalog import SupermarketCatalog
-from model_objects import Offer, Product, SpecialOfferType
-from receipt import Receipt
-from shopping_cart import ShoppingCart
+from supermarket_receipt.catalog import SupermarketCatalog
+from supermarket_receipt.model_objects import Offer, Product, SpecialOfferType
+from supermarket_receipt.receipt import Receipt
+from supermarket_receipt.shopping_cart import ShoppingCart
 
 Offers: TypeAlias = dict[Product, Offer]
 
