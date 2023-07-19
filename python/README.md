@@ -78,3 +78,11 @@ and delegate the conversion to Currency units to the presentation layer.
 - iteration over dict.keys() instead of dict.items()
 - a big if/elif/else block would be probably better as rewritten with a match/case expression.
 -  Discount.description could be refactored, to leave the presentation concerns out of it.
+
+### test_supermarket.py 
+
+- Use pytest's fixtures.
+
+### fake_catalog.py 
+- Primary key by product's name is vulnerable to collision. I would use the enitre product (hashable instance), instead.
+- Could use only FakeCatalog.prices storage, as FakeCatalog.products seems redundant if we can use the product as a key.

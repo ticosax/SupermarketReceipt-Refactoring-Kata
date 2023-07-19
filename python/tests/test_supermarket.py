@@ -1,19 +1,11 @@
 import pytest
 
-from model_objects import Product, ProductUnit, SpecialOfferType
+from model_objects import SpecialOfferType
 from shopping_cart import ShoppingCart
 from teller import Teller
-from tests.fake_catalog import FakeCatalog
 
 
-def test_ten_percent_discount():
-    catalog = FakeCatalog()
-    toothbrush = Product("toothbrush", ProductUnit.EACH)
-    catalog.add_product(toothbrush, 0.99)
-
-    apples = Product("apples", ProductUnit.KILO)
-    catalog.add_product(apples, 1.99)
-
+def test_ten_percent_discount(catalog, toothbrush, apples):
     teller = Teller(catalog)
     teller.add_special_offer(SpecialOfferType.TEN_PERCENT_DISCOUNT, toothbrush, 10.0)
 
