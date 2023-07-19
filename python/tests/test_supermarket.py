@@ -125,3 +125,21 @@ def test_shopping_cart_add_item(catalog, toothbrush):
     assert receipt_item.price == 99
     assert receipt_item.total_price == 99
     assert receipt_item.quantity == 1
+
+
+def test_3_for_2_discount_less_than_3(catalog, toothbrush):
+    teller = Teller(catalog)
+    teller.add_special_offer(
+        SpecialOfferType.THREE_FOR_TWO, toothbrush, catalog.unit_price(toothbrush)
+    )
+    cart = ShoppingCart()
+    cart.add_item_quantity(toothbrush, 2)
+    receipt = teller.checks_out_articles_from(cart)
+    assert receipt.total_price() == 99 * 2
+    assert receipt.discounts == []
+    assert len(receipt.items) == 1
+    receipt_item = receipt.items[0]
+    assert receipt_item.product == toothbrush
+    assert receipt_item.price == 99
+    assert receipt_item.total_price == 99 * 2
+    assert receipt_item.quantity == 2

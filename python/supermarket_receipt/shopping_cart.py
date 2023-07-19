@@ -55,8 +55,7 @@ def _discount_builder(
                 -quantity * unit_price * offer.argument / 100.0,
             )
         case _:
-            message = f"Kind of offer not handled {offer.offer_type}"
-            raise NotImplementedError(message)
+            return None
 
 
 @dataclass
