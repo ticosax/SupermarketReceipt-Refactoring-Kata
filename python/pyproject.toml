@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "supermarket-receipt"
+version = "0.1.0"
+description = "Refactoring Kata code"
+authors = ["Nicolas Delaby"]
+readme = "README.md"
+# packages = [{include = "."}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dateutil = "^2.8.2"
+
+
+[tool.poetry.group.dev.dependencies]
+approvaltests = "^8.4.1"
+pytest-approvaltests = "^0.2.4"
+texttest = "^4.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

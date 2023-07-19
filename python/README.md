@@ -24,3 +24,8 @@ On the command line, enter the `SupermarketReceipt-Refactoring-Kata/python` dire
 ```
 texttest -a sr -d .
 ```
+
+## My notes:
+
+- Switch to poetry to deal with dependencies and virtualenvronment.
+- Measure coverage to find out which part of the project must be tested
