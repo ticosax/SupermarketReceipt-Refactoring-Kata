@@ -2,6 +2,6 @@ apples                              1.80
   0.90 * 2.000
 baguette                            3.90
   1.30 * 3
-10% discount (baguette)            -0.34
+10% discount (baguette)            -0.39
 
-Total:                              5.36
+Total:                              5.31

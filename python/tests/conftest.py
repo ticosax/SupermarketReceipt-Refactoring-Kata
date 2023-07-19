@@ -13,37 +13,37 @@ def catalog() -> FakeCatalog:
 @pytest.fixture()
 def apples(catalog) -> Product:
     apples = Product("apples", ProductUnit.KILO)
-    catalog.add_product(apples, 1.99)
+    catalog.add_product(apples, 199)
     return apples
 
 
 @pytest.fixture()
 def baguette(catalog) -> Product:
     baguette = Product("baguette", ProductUnit.EACH)
-    catalog.add_product(baguette, 1.3)
+    catalog.add_product(baguette, 13)
     return baguette
 
 
 @pytest.fixture()
 def toothbrush(catalog) -> Product:
     toothbrush = Product("toothbrush", ProductUnit.EACH)
-    catalog.add_product(toothbrush, 0.99)
+    catalog.add_product(toothbrush, 99)
     return toothbrush
 
 
 @pytest.fixture()
 def no_discount_receipt(apples, baguette) -> Receipt:
     receipt = Receipt()
-    receipt.add_product(apples, 2, 0.9, 2 * 0.9)
-    receipt.add_product(baguette, 3, 1.3, 3 * 1.3)
+    receipt.add_product(apples, 2, 90, 2 * 90)
+    receipt.add_product(baguette, 3, 130, 3 * 130)
     return receipt
 
 
 @pytest.fixture()
 def percent_discount_receipt(apples, baguette) -> Receipt:
     receipt = Receipt()
-    receipt.add_product(apples, 2, 0.9, 2 * 0.9)
-    receipt.add_product(baguette, 3, 1.3, 3 * 1.3)
-    discount = Discount(baguette, "10% discount", -(3*1.13*0.1))
+    receipt.add_product(apples, 2, 90, 2 * 90)
+    receipt.add_product(baguette, 3, 130, 3 * 130)
+    discount = Discount(baguette, "10% discount", -(3 * 130 * 0.1))
     receipt.add_discount(discount)
     return receipt

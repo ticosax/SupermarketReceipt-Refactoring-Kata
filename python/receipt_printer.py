@@ -30,14 +30,15 @@ class ReceiptPrinter:
     def format_line_with_whitespace(self, name, value):
         line = name
         whitespace_size = self.columns - len(name) - len(value)
-        for i in range(whitespace_size):
+        for _i in range(whitespace_size):
             line += " "
         line += value
         line += "\n"
         return line
 
     def print_price(self, price):
-        return "%.2f" % price
+        """Display in currency units and not cents"""
+        return "%.2f" % (price * 0.01)
 
     def print_quantity(self, item):
         if ProductUnit.EACH == item.product.unit:
