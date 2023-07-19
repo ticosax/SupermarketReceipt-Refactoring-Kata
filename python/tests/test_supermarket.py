@@ -1,19 +1,20 @@
 from model_objects import Discount, SpecialOfferType
 from shopping_cart import ShoppingCart
 from teller import Teller
+from tests.conftest import toothbrush
 
 
-def test_ten_percent_discount(catalog, toothbrush, apples):
+def test_ten_percent_discount(catalog, apples):
     teller = Teller(catalog)
-    teller.add_special_offer(SpecialOfferType.TEN_PERCENT_DISCOUNT, toothbrush, 10.0)
+    teller.add_special_offer(SpecialOfferType.TEN_PERCENT_DISCOUNT, apples, 10.0)
 
     cart = ShoppingCart()
     cart.add_item_quantity(apples, 2.5)
 
     receipt = teller.checks_out_articles_from(cart)
 
-    assert receipt.total_price() == 497.5
-    assert receipt.discounts == []
+    assert receipt.total_price() == 447.75
+    assert receipt.discounts == [Discount(apples, "10.0% off", -49.75)]
     assert len(receipt.items) == 1
     receipt_item = receipt.items[0]
     assert receipt_item.product == apples
@@ -88,3 +89,40 @@ def test_2_for_amount_discount_2_times(catalog, toothbrush):
     assert receipt_item.price == 99
     assert receipt_item.total_price == 396
     assert receipt_item.quantity == 4
+
+
+def test_shopping_cart_no_matching_discount(catalog, apples):
+    teller = Teller(catalog)
+    teller.add_special_offer(SpecialOfferType.TEN_PERCENT_DISCOUNT, toothbrush, 10.0)
+
+    cart = ShoppingCart()
+    cart.add_item_quantity(apples, 2.5)
+
+    receipt = teller.checks_out_articles_from(cart)
+
+    assert receipt.total_price() == 497.5
+    assert receipt.discounts == []
+    assert len(receipt.items) == 1
+    receipt_item = receipt.items[0]
+    assert receipt_item.product == apples
+    assert receipt_item.price == 199
+    assert receipt_item.total_price == 199 * 2.5
+    assert receipt_item.quantity == 2.5
+
+
+def test_shopping_cart_add_item(catalog, toothbrush):
+    teller = Teller(catalog)
+
+    cart = ShoppingCart()
+    cart.add_item(toothbrush)
+
+    receipt = teller.checks_out_articles_from(cart)
+
+    assert receipt.total_price() == 99
+    assert receipt.discounts == []
+    assert len(receipt.items) == 1
+    receipt_item = receipt.items[0]
+    assert receipt_item.product == toothbrush
+    assert receipt_item.price == 99
+    assert receipt_item.total_price == 99 
+    assert receipt_item.quantity == 1
