@@ -47,3 +47,13 @@ def percent_discount_receipt(apples, baguette) -> Receipt:
     discount = Discount(baguette, "10% discount", -(3 * 130 * 0.1))
     receipt.add_discount(discount)
     return receipt
+
+
+@pytest.fixture()
+def bulk_discount_receipt(apples, baguette) -> Receipt:
+    receipt = Receipt()
+    receipt.add_product(baguette, 3, 130, 3 * 130)
+    receipt.add_product(apples, 2, 90, 2 * 90)
+    discount = Discount(baguette, "3 for 2", -130)
+    receipt.add_discount(discount)
+    return receipt
