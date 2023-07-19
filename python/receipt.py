@@ -1,6 +1,7 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from math import fsum
 
-from model_objects import Product
+from model_objects import Discount, Product
 
 
 @dataclass
@@ -11,29 +12,18 @@ class ReceiptItem:
     total_price: float
 
 
+@dataclass
 class Receipt:
-    def __init__(self):
-        self._items = []
-        self._discounts = []
+    items: list[ReceiptItem] = field(default_factory=list)
+    discounts: list[Discount] = field(default_factory=list)
 
     def total_price(self):
-        total = 0
-        for item in self.items:
-            total += item.total_price
-        for discount in self.discounts:
-            total += discount.discount_amount
+        total = fsum(item.total_price for item in self.items)
+        total += fsum(discount.discount_amount for discount in self.discounts)
         return total
 
     def add_product(self, product, quantity, price, total_price):
-        self._items.append(ReceiptItem(product, quantity, price, total_price))
+        self.items.append(ReceiptItem(product, quantity, price, total_price))
 
     def add_discount(self, discount):
-        self._discounts.append(discount)
-
-    @property
-    def items(self):
-        return self._items[:]
-
-    @property
-    def discounts(self):
-        return self._discounts[:]
+        self.discounts.append(discount)
