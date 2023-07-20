@@ -27,7 +27,7 @@ texttest -a sr -d .
 
 ## My notes:
 
-- Switch to poetry to deal with dependencies and virtualen environment.
+- Switch to poetry to deal with dependencies and virtual environment.
 - Measure coverage to find out which part of the project must be tested
 
     ---------- coverage: platform linux, python 3.11.3-final-0 -----------
@@ -70,7 +70,10 @@ and delegate the conversion to Currency units to the presentation layer.
 
 ### receipt_printer.py 
 - Looks like the whole thing, would be better implemented with a template engine.
-- At first glance, I would choose to convert the Receipt into a intermediary representation format such as json or xml. That, in turn, would be transformed into one of multiple output. we could then have a serializer for plain text, html, pdf, ods, xml, ... The specific choice about which transformation stack that should be used, depends on the use case. XML + XSLT related stack offers a wide variety of choices to transform the receipt into many formats. For the sake of this kata excercise, [jinja](https://jinja.palletsprojects.com/en/3.1.x/) would probably be a good fit. 
+- At first glance, I would choose to convert the Receipt into a intermediary representation format such as json or xml. That, in turn, would be transformed into one of multiple output.
+we could then have a serializer for plain text, html, pdf, ods, xml, ... The specific choice about which transformation stack that should be used, depends on the use case.
+XML + XSLT related stack offers a wide variety of choices to transform the receipt into many formats.
+For the sake of this kata excercise, [jinja](https://jinja.palletsprojects.com/en/3.1.x/) would probably be a better fit. 
 
 ### shopping_cart.py 
 
@@ -86,3 +89,23 @@ and delegate the conversion to Currency units to the presentation layer.
 ### fake_catalog.py 
 - Primary key by product's name is vulnerable to collision. I would use the enitre product (hashable instance), instead.
 - Could use only FakeCatalog.prices storage, as FakeCatalog.products seems redundant if we can use the product as a key.
+
+## After refactoring
+
+    ---------- coverage: platform linux, python 3.11.3-final-0 -----------
+    Name                                     Stmts   Miss  Cover   Missing
+    ----------------------------------------------------------------------
+    supermarket_receipt/catalog.py              10      2    80%   11, 15
+    supermarket_receipt/model_objects.py        28      0   100%
+    supermarket_receipt/receipt.py              21      0   100%
+    supermarket_receipt/receipt_printer.py      30      0   100%
+    supermarket_receipt/shopping_cart.py        44      0   100%
+    supermarket_receipt/teller.py               24      0   100%
+    tests/__init__.py                            0      0   100%
+    tests/conftest.py                           54      0   100%
+    tests/fake_catalog.py                        9      0   100%
+    tests/test_fake_catalog.py                   2      0   100%
+    tests/test_receipt_printer.py               11      0   100%
+    tests/test_supermarket.py                  114      0   100%
+    ----------------------------------------------------------------------
+    TOTAL                                      347      2    99%

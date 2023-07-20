@@ -1,0 +1,7 @@
+baguette                            3.90
+  1.30 * 3
+apples                              1.80
+  0.90 * 2.000
+3 for 2 (baguette)                 -1.30
+
+Total:                              4.40

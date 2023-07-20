@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Receipt</title>
+</head>
+<body>
+    <table>
+      
+      <tr><td>baguette</td><td>3.90</td></tr>
+      
+      <tr><td>apples</td><td>1.80</td></tr>
+      
+    </table>
+</body>
+</html>

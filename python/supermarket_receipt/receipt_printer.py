@@ -1,3 +1,4 @@
+import mimetypes
 from functools import partial
 
 from jinja2 import Environment, PackageLoader, select_autoescape
@@ -33,13 +34,14 @@ class ReceiptPrinter:
     def __init__(self, columns=40):
         self.columns = columns
 
-    def print_receipt(self, receipt):
+    def print_receipt(self, receipt: Receipt, mimetype: str = "text/plain"):
         env = Environment(
             loader=PackageLoader("supermarket_receipt"), autoescape=select_autoescape()
         )
         env.filters["asitemline"] = partial(render_item_line, self.columns)
         env.filters["astotalline"] = partial(render_total_line, self.columns)
-        env.filters['asdiscountline'] = partial(render_discount_line, self.columns)
+        env.filters["asdiscountline"] = partial(render_discount_line, self.columns)
         env.filters["is_each"] = is_each
-        template = env.get_template("receipt.txt")
+        extension = mimetypes.guess_extension(mimetype)
+        template = env.get_template(f"receipt{extension}")
         return template.render(receipt=receipt, columns=self.columns)

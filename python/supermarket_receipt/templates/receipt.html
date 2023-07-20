@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Receipt</title>
+</head>
+<body>
+    <table>
+      {% for item in receipt.items %}
+      <tr><td>{{ item.product.name }}</td><td>{{ "{:.2f}".format(item.total_price / 100) }}</td></tr>
+      {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+    <table>
+      
+      <tr><td>apples</td><td>1.80</td></tr>
+      
+      <tr><td>baguette</td><td>3.90</td></tr>
+      
+    </table>
+</body>
+</html>
