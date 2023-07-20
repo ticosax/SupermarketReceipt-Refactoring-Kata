@@ -30,20 +30,20 @@ texttest -a sr -d .
 - Switch to poetry to deal with dependencies and virtual environment.
 - Measure coverage to find out which part of the project must be tested
 
-    ---------- coverage: platform linux, python 3.11.3-final-0 -----------
-    Name                        Stmts   Miss  Cover
-    -----------------------------------------------
-    catalog.py                      5      2    60%
-    model_objects.py               27      3    89%
-    receipt.py                     27      2    93%
-    receipt_printer.py             44     44     0%
-    shopping_cart.py               49     29    41%
-    teller.py                      19      0   100%
-    tests/__init__.py               0      0   100%
-    tests/fake_catalog.py          10      0   100%
-    tests/test_supermarket.py      24      0   100%
-    -----------------------------------------------
-    TOTAL                         205     80    61%
+        ---------- coverage: platform linux, python 3.11.3-final-0 -----------
+        Name                        Stmts   Miss  Cover
+        -----------------------------------------------
+        catalog.py                      5      2    60%
+        model_objects.py               27      3    89%
+        receipt.py                     27      2    93%
+        receipt_printer.py             44     44     0%
+        shopping_cart.py               49     29    41%
+        teller.py                      19      0   100%
+        tests/__init__.py               0      0   100%
+        tests/fake_catalog.py          10      0   100%
+        tests/test_supermarket.py      24      0   100%
+        -----------------------------------------------
+        TOTAL                         205     80    61%
 
     Looks like, I will focus on the printer, shopping cart and catalog modules
 - Dealing with currency as floats can lead to rounding errors,
